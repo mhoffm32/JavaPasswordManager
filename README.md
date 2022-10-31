@@ -3,9 +3,9 @@
 
 Interactive Java password database 
 
-- Uses HashMap to store user apps with their associated passwords app in a hashmap, 
+- Uses HashMap to store user apps with their associated passwords app in a hashmap.
 
-- Checks for password complexity when changing or adding new passwords
+- Checks for password complexity when changing or adding new passwords.
 
 - Protects saved passwords with a dynamic entrance password.
 
