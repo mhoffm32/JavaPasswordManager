@@ -1,4 +1,4 @@
-# PasswordManager
+# JavaPasswordManager
 
 
 Interactive Java password database 
