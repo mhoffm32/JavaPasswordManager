@@ -1,9 +1,9 @@
 # JavaPasswordManager
 
 
-Interactive Java password database 
+Interactive java password database and security verification
 
-- Uses HashMap to store user apps with their associated passwords app in a hashmap.
+- Uses a HashMap to store user apps with their associated passwords app in a hashmap.
 
 - Checks for password complexity when changing or adding new passwords.
 
