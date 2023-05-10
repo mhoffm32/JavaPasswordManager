@@ -9,5 +9,5 @@ Interactive java password database and security verification
 
 - Protects saved passwords with a dynamic entrance password.
 
-- Saves, Reads & Writes data to txt file to save in between runs.
+- Saves data to a secure SQL database. 
 
