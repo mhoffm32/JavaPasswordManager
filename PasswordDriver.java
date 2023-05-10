@@ -1,10 +1,15 @@
 package Package1;
 import java.io.*;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.SQLException;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Scanner;
 
 public class PasswordDriver {
+
+    private static Connection conn;
     //entering file paths, and creating file objects to save new and modified key value pairs
     public static Scanner input = new Scanner(System.in); //to get user input
     final static String filePath1 = "passwordStorage.txt";
@@ -12,10 +17,16 @@ public class PasswordDriver {
     public static File file1 = new File(filePath1); //file object
     public static File file2 = new File(filePath2);
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws SQLException {
 
-        HashMap<String, String> passwordDatabase = new HashMap<>();
-        Password p = new Password(passwordDatabase); //Password Object
+        connectDB();
+        PassAdapter passwordAdapter = new PassAdapter(conn,false);
+        Password p = new Password();
+        p.setAdapter(passwordAdapter);
+        HashMap<String, String> passwordDatabase = passwordAdapter.getPassMap();
+
+        p.setpassMap(passwordDatabase); //Password Object
+
         readToFile(passwordDatabase,p); //reads file and writes the hashmap to input saved from previous run
         boolean allowed; //to check if user is authorized to enter the program
         boolean terminate = false;
@@ -163,4 +174,22 @@ public class PasswordDriver {
             }
         }
     }
+
+    public static void connectDB(){
+        try{
+            // Create a named constant for the URL
+            // NOTE: This value is specific for Java DB
+            String DB_URL = "jdbc:derby:passwordDB;create=true";
+            // Create a connection to the database
+            conn = DriverManager.getConnection(DB_URL);
+            // Create the admin account if it is not already in the database
+            new PassAdapter(conn,false);
+
+        } catch (SQLException ex) {
+            System.out.println("Failed to create table");
+        }
+    }
+
+
+
 }
