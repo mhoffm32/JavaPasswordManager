@@ -5,9 +5,12 @@ import java.util.Scanner;
 //Class to hold app, passwords, entrance password
 public class Password {
     public static Scanner input = new Scanner(System.in);
+    PassAdapter pAdapter;
     private HashMap<String,String> PassMap;
     private String entrancePassword;
-   Password(HashMap<String,String> myPassMap){ //Constructor to make Password obj
+
+    Password(){}
+    Password(HashMap<String,String> myPassMap){ //Constructor to make Password obj
        this.PassMap = myPassMap;
    }
     public void setEntrancePassword(String entrancePassword) { //setting entrance password
@@ -15,6 +18,9 @@ public class Password {
     }
     public String getEntrancePassword(){ //get entrance pass
        return entrancePassword;
+    }
+    public void setpassMap(HashMap<String,String> myPassMap) {
+        this.PassMap = myPassMap;
     }
 
     public void changeEntrancePassword(){ //to change password protecting the database
@@ -163,5 +169,8 @@ public class Password {
         return myPassword; //returns string of the accepted password.
     }
 
+    public void setAdapter(PassAdapter adapter){
+        pAdapter = adapter;
+    }
 
 }
