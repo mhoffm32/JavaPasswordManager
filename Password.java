@@ -4,6 +4,7 @@ import java.util.Scanner;
 
 //Class to hold app, passwords, entrance password
 public class Password {
+    //testing changes
     public static Scanner input = new Scanner(System.in);
     PassAdapter pAdapter;
     private HashMap<String,String> PassMap;
