@@ -96,7 +96,8 @@ public class PasswordDriver {
                 }
                 passwordAdapter.updateAllData(passwordDatabase);
                 updateData(p,passwordAdapter);
-                writeToFile(passwordDatabase,p); //overwrites modified data to files
+                writeToFile(passwordDatabase,p);
+                //overwrites modified data to files
             } while (!terminate); //user continues doing actions until they chose to terminate program
         }
     }
