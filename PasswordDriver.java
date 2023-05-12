@@ -17,14 +17,20 @@ public class PasswordDriver {
     public static File file1 = new File(filePath1); //file object
     public static File file2 = new File(filePath2);
 
-    public static void main(String[] args) throws SQLException {
+    public static HashMap<String, String> passwordDatabase;
 
+    public static void updateData(Password passObj, PassAdapter adapter){
+        passObj.setAdapter(adapter);
+        passwordDatabase = passwordAdapter.getPassMap();
+        passObj.setpassMap(passwordDatabase);
+    }
+
+    public static void main(String[] args) throws SQLException {
         connectDB();
         PassAdapter passwordAdapter = new PassAdapter(conn,false);
         Password p = new Password();
         p.setAdapter(passwordAdapter);
         HashMap<String, String> passwordDatabase = passwordAdapter.getPassMap();
-
         p.setpassMap(passwordDatabase); //Password Object
 
         readToFile(passwordDatabase,p); //reads file and writes the hashmap to input saved from previous run
@@ -58,7 +64,7 @@ public class PasswordDriver {
                     case "A" -> {
                         System.out.printf("%30s","ADD PASSWORD");
                         System.out.println("\n-------------------------------------------------------------");
-                        passwordDatabase = p.addPassword(passwordDatabase); //calls p instance of Password with add password method
+                        passwordDatabase = p.addPassword(passwordDatabase);//calls p instance of Password with add password method
                         System.out.println("\n-------------------------------------------------------------");
                     }
                     case "D" ->{
@@ -89,6 +95,7 @@ public class PasswordDriver {
                     default -> System.out.println("Invalid input");
 
                 }
+                updateData(p,passwordAdapter);
                 writeToFile(passwordDatabase,p); //overwrites modified data to files
             } while (!terminate); //user continues doing actions until they chose to terminate program
         }

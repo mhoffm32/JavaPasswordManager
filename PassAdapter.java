@@ -47,6 +47,14 @@ public class PassAdapter {
         return num;
     }
 
+    public void updateAllData(HashMap<String,String> passMap){
+        Statement stmt = connection.createStatement();
+        stmt.executeUpdate("DELETE FROM Matches");
+        for (passMap.Entry<String, Integer> entry : hashMap.entrySet()) {
+            this.insertPass(entry.getKey(),entry.getValue());
+        }
+    }
+
     public void insertPass(String app, String pass) throws SQLException {
         Statement stmt = connection.createStatement();
         int index = this.getMax();
