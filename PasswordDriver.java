@@ -93,8 +93,8 @@ public class PasswordDriver {
                     case "T" -> terminate = true; //if user selects T the progress is saved and program is terminated
 
                     default -> System.out.println("Invalid input");
-
                 }
+                passwordAdapter.updateAllData(passwordDatabase);
                 updateData(p,passwordAdapter);
                 writeToFile(passwordDatabase,p); //overwrites modified data to files
             } while (!terminate); //user continues doing actions until they chose to terminate program
