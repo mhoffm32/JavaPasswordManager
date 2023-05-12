@@ -189,7 +189,4 @@ public class PasswordDriver {
             System.out.println("Failed to create table");
         }
     }
-
-
-
 }
